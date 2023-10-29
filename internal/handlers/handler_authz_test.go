@@ -491,8 +491,8 @@ func (s *AuthzSuite) TestShouldApplyPolicyOfOneFactorDomainWithAuthorizationHead
 	builder := NewAuthzBuilder().WithImplementationLegacy()
 
 	builder = builder.WithStrategies(
-		NewHeaderAuthorizationAuthnStrategy(),
-		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(),
+		NewHeaderAuthorizationAuthnStrategy(false),
+		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(false),
 		NewCookieSessionAuthnStrategy(builder.config.RefreshInterval),
 	)
 
@@ -538,8 +538,8 @@ func (s *AuthzSuite) TestShouldHandleAuthzWithoutHeaderNoCookie() {
 	builder := NewAuthzBuilder().WithImplementationLegacy()
 
 	builder = builder.WithStrategies(
-		NewHeaderAuthorizationAuthnStrategy(),
-		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(),
+		NewHeaderAuthorizationAuthnStrategy(false),
+		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(false),
 	)
 
 	authz := builder.Build()
@@ -571,8 +571,8 @@ func (s *AuthzSuite) TestShouldHandleAuthzWithEmptyAuthorizationHeader() {
 	builder := NewAuthzBuilder().WithImplementationLegacy()
 
 	builder = builder.WithStrategies(
-		NewHeaderAuthorizationAuthnStrategy(),
-		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(),
+		NewHeaderAuthorizationAuthnStrategy(false),
+		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(false),
 	)
 
 	authz := builder.Build()
@@ -606,8 +606,8 @@ func (s *AuthzSuite) TestShouldHandleAuthzWithAuthorizationHeaderInvalidPassword
 	builder := NewAuthzBuilder().WithImplementationLegacy()
 
 	builder = builder.WithStrategies(
-		NewHeaderAuthorizationAuthnStrategy(),
-		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(),
+		NewHeaderAuthorizationAuthnStrategy(false),
+		NewHeaderProxyAuthorizationAuthRequestAuthnStrategy(false),
 	)
 
 	authz := builder.Build()
@@ -643,7 +643,7 @@ func (s *AuthzSuite) TestShouldHandleAuthzWithIncorrectAuthHeader() { // TestSho
 	builder := s.Builder()
 
 	builder = builder.WithStrategies(
-		NewHeaderAuthorizationAuthnStrategy(),
+		NewHeaderAuthorizationAuthnStrategy(false),
 	)
 
 	authz := builder.Build()
